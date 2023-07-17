@@ -19,6 +19,6 @@ spec:
             - containerPort: 8080
           env:
           - name: GMAIL_USERNAME
-            value: ${GMAIL_USERNAME}
+            value: "$(GMAIL_USERNAME)"
           - name: GMAIL_PWD
-            value: ${GMAIL_PWD}
+            value: "$(GMAIL_PWD)"
