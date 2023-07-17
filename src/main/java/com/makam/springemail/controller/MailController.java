@@ -16,7 +16,7 @@ import java.util.Map;
 @RestController
 public class MailController {
 
-    private MailService mailService;
+    private final MailService mailService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MailController.class);
 
@@ -36,7 +36,6 @@ public class MailController {
         response.put("message", "Email successfully sent");
         return response;
     }
-
 
     @PostMapping("/mime-mail")
     public Map<String,String> sendMimeMail(@RequestBody Mail mail) {

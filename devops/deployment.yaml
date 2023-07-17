@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-email-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-email-app
+  template:
+    metadata:
+      labels:
+        app: spring-email-app
+    spec:
+      containers:
+        - name: spring-email
+          image: deekshamakam/spring-gmail:latest
+          ports:
+            - containerPort: 8080
+          env:
+          - name: GMAIL_USERNAME
+            value: "$(GMAIL_USERNAME)"
+          - name: GMAIL_PWD
+            value: "$(GMAIL_PWD)"
