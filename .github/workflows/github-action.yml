@@ -32,8 +32,8 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t spring-email:latest .
-          docker tag spring-email:latest ${{ secrets.DOCKERHUB_USERNAME }}/spring-email:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/spring-email:latest
+          docker tag spring-email:latest ${{ env.DOCKERHUB_USERNAME }}/spring-email:latest
+          docker push ${{ env.DOCKERHUB_USERNAME }}/spring-email:latest
 
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
       - name: Update dependency graph
