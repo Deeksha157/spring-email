@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Build
 
 on:
   push:
@@ -20,9 +20,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - shell: bash
-        env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       - uses: actions/checkout@v3
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -35,8 +32,8 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t spring-email:latest .
-          docker tag spring-email:latest $DOCKERHUB_USERNAME/spring-email:latest
-          docker push $DOCKERHUB_USERNAME/spring-email:latest
+          docker tag spring-email:latest ${{ secrets.DOCKERHUB_USERNAME }}/spring-email:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/spring-email:latest
 
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
       - name: Update dependency graph
